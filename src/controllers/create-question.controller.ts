@@ -1,20 +1,20 @@
-import { ConflictException, UsePipes } from "@nestjs/common";
+import { ConflictException, UseGuards, UsePipes } from "@nestjs/common";
 import { Body, Controller, HttpCode, Post } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { hash } from 'bcryptjs'
 import {z} from 'zod'
 import { ZodValidationPipe } from "src/pipes/zod-validation-pipe";
+import { AuthGuard } from "@nestjs/passport";
 
 const createQuestionBodySchema = z.object({
   name: z.string(),
-  email: z.string().email(),
-  password: z.string()
 })
 
 type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>
 
 
 @Controller('/questions')
+@UseGuards(AuthGuard('jwt'))
 export class CreateQuestionController {
   constructor(
     private prisma: PrismaService
@@ -24,7 +24,7 @@ export class CreateQuestionController {
   @HttpCode(201)
   @UsePipes( new ZodValidationPipe(createQuestionBodySchema))
   async handle(@Body() body: CreateQuestionBodySchema) {
-    // const {name, email, password} = body
+    const {name} = body
 
 
     // const userWithSameEmail = await this.prisma.user.findUnique({
@@ -46,6 +46,6 @@ export class CreateQuestionController {
     //     password: hashedPassword
     //   }
     // })
-    return 'OK'
+    return name
   }
 }
