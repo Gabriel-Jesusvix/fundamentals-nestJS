@@ -16,7 +16,6 @@ describe('Authenticate (E2E)', () => {
     prisma = moduleRef.get(PrismaService)
     await app.init()
   })
-  
   test('[POST] /sessions', async () => {
     await prisma.user.create({
       data: {

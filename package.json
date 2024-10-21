@@ -30,6 +30,7 @@
     "@swc/core": "^1.7.35",
     "@vitest/coverage-v8": "^2.1.2",
     "bcryptjs": "^2.4.3",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
@@ -43,6 +44,7 @@
     "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.0.3",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
