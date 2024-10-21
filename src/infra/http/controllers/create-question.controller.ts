@@ -1,9 +1,9 @@
+import { CurrentUser } from "@/infra/auth/current-user-decorator";
+import { UserPayload } from "@/infra/auth/jwt-strategy";
+import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe';
+import { PrismaService } from '@/infra/prisma/prisma.service';
 import { Body, Controller, HttpCode, Post, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
-import { CurrentUser } from "src/auth/current-user-decorator";
-import { UserPayload } from "src/auth/jwt-strategy";
-import { ZodValidationPipe } from "src/pipes/zod-validation-pipe";
-import { PrismaService } from "src/prisma/prisma.service";
 import { z } from "zod";
 
 const createQuestionBodySchema = z.object({
@@ -41,7 +41,7 @@ export class CreateQuestionController {
     })
   }
 
-  
+
   private convertToSlug(title: string): string {
     return title
       .toLowerCase()
