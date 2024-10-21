@@ -33,7 +33,7 @@ export class CreateQuestionController {
 
     await this.prisma.question.create({
       data: {
-        userId,
+        authorId: userId,
         title,
         content,
         slug: slug
